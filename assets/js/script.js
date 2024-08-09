@@ -17,3 +17,23 @@ function fetchYouTubeVideos(query) {
             return [];
         });
 }
+
+function fetchWikipediaArticles(query) {
+    const apiKey = 'WIKI API KEY PSEUDOCODE';
+    const baseUrl = 'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1';
+    const url = baseUrl + '&titles=' + encodeURIComponent(query) + '&utf8=1&formatversion=2&apikey=' + apiKey;
+    
+    return fetch(url)
+        .then(function(response) {
+            if (!response.ok) {
+                return [];
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            return data.query.pages || [];
+        })
+        .catch(function(error) {
+            return [];
+        });
+}
