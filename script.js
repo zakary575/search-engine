@@ -9,7 +9,9 @@ const searchBox = document.querySelector(
 
 const valueCheck = function(){
     if( searchBox.value === ''){
-        // modal
+        $( function() {
+            $( "#dialog" ).dialog();
+          } );
     }
 }
 
