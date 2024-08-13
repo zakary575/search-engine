@@ -19,10 +19,9 @@ function fetchYouTubeVideos(query) {
 }
 
 function fetchWikipediaArticles(query) {
-    const apiKey = 'WIKI API KEY PSEUDOCODE';
-    const baseUrl = 'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&redirects=1';
-    const url = baseUrl + '&titles=' + encodeURIComponent(query) + '&utf8=1&formatversion=2&apikey=' + apiKey;
-    
+    const baseUrl = 'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&exintro&explaintext&piprop=original&redirects=1&utf8=1&formatversion=2';
+    const url = baseUrl + '&titles=' + encodeURIComponent(query);
+
     return fetch(url)
         .then(function(response) {
             if (!response.ok) {
@@ -31,9 +30,24 @@ function fetchWikipediaArticles(query) {
             return response.json();
         })
         .then(function(data) {
-            return data.query.pages || [];
+            if (data.query && data.query.pages) {
+                return data.query.pages.map(function(page) {
+                    return {
+                        title: page.title,
+                        index: page.index || null,
+                        extract: page.extract || '',
+                        image: page.original ? page.original.source : null
+                    };
+                });
+            } else {
+                return [];
+            }
         })
         .catch(function(error) {
+            console.error('Error fetching Wikipedia article:', error);
             return [];
         });
 }
+
+
+
