@@ -1,24 +1,33 @@
+const searchBox = document.querySelector("#search-bar");
+
 function fetchYouTubeVideos(query) {
-    const apiKey = 'AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4';
-    const baseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet';
-    const url = baseUrl + '&q=' + encodeURIComponent(query) + '&key=' + apiKey + '&type=video';
-    
-    return fetch(url)
-        .then(function(response) {
-            if (!response.ok) {
-                return [];
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            return data.items || [];
-        })
-        .catch(function(error) {
-            return [];
-        });
+  const apiKey = "AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4";
+  const baseUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet";
+  const url =
+    baseUrl +
+    "&q=" +
+    encodeURIComponent(query) +
+    "&key=" +
+    apiKey +
+    "&type=video";
+
+  return fetch(url)
+    .then(function (response) {
+      if (!response.ok) {
+        return [];
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      return data.items || [];
+    })
+    .catch(function (error) {
+      return [];
+    });
 }
 
 function fetchWikipediaArticles(query) {
+
     const baseUrl = 'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&exintro&explaintext&piprop=original&redirects=1&utf8=1&formatversion=2';
     const url = baseUrl + '&titles=' + encodeURIComponent(query);
 
@@ -49,5 +58,21 @@ function fetchWikipediaArticles(query) {
         });
 }
 
+$(function () {
+  $("#dialog").dialog({ autoOpen: false });
+});
 
+const valueCheck = function () {
+  if (searchBox.value === "") {
+    $("#dialog").dialog("open");
+  }
+};
 
+addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (valueCheck()) {
+    return;
+  }
+  fetchYoutubeVideos();
+  fetchWikiArcticles();
+});
