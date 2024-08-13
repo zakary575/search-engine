@@ -2,10 +2,7 @@
 // if the search is empty a modal that tells them to put something in
 // if we add a second page make it send them to the new page
 
-
-const searchBox = document.querySelector(
-    // searchbox id here
-)
+const searchBox = document.querySelector('#search-bar')
 
 const valueCheck = function(){
     if( searchBox.value === ''){
@@ -21,6 +18,6 @@ addEventListener('submit', function(event){
     if (valueCheck){
         return;
     }
-    fetchYoutubeVideos();
-    fetchWikiArcticles()
+    // fetchYoutubeVideos();
+    // fetchWikiArcticles()
 })

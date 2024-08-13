@@ -1,3 +1,7 @@
+
+const searchBox = document.querySelector('#search-bar')
+
+
 function fetchYouTubeVideos(query) {
     const apiKey = 'AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4';
     const baseUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet';
@@ -37,3 +41,22 @@ function fetchWikipediaArticles(query) {
             return [];
         });
 }
+
+$( function() {
+    $( "#dialog" ).dialog({autoOpen:false});
+  } );
+
+const valueCheck = function(){
+    if( searchBox.value === ''){
+        $( "#dialog" ).dialog( "open" );
+    }
+}
+
+
+addEventListener('submit', function(event){
+    event.preventDefault();
+    if (valueCheck()){
+        return;
+    }
+
+})
