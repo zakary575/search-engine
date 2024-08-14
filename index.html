@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WikiTube</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
-    <link rel='stylesheet' href="./assets/css/style.css" />
-    <script src="./assets/script.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"/>
+    <link rel='stylesheet' href="./assets/css/style.css"/>
 </head>
-<h1 class="title is-1 has-text-centered-desktop has-background-info">Welcome To WikiTube!</h1>
 
 <body>
-    <!--<div class="container is-fluid">-->
-    <!--<div class="columns is-desktop">-->
-    <!--<div class="column is-half">-->
+    <h1 class="title is-1 has-text-centered-desktop has-background-info">Welcome To WikiTube!</h1>
+
     <div class="level">
         <div class="level-left">
             <div class="level-item">
@@ -25,8 +23,6 @@
                 </div>
             </div>
         </div>
-        <!--</div>-->
-        <!--<div class="column is-half">-->
         <div class="level-center">
             <div class="level-item">
                 <div class="content">
@@ -39,8 +35,6 @@
                 </div>
             </div>
         </div>
-        <!--</div>-->
-        <!--<div class="column is-half">-->
         <div class="level-right">
             <div class="level-item">
                 <div class="image">
@@ -49,15 +43,14 @@
                 </div>
             </div>
         </div>
-        <!--</div>-->
     </div>
-    <!--</div>-->
+
     <div class="container">
         <form class="box has-background-grey-dark" style="margin-bottom: 5%; margin-top: 5%;">
             <div class="field is-grouped">
                 <label class="label is-size-4-desktop">Search for a topic!</label>
                 <div class="control is-expanded">
-                    <input class="input" type="text" placeholder="e.g. Great Barrier Reef" />
+                    <input class="input" type="text" id="search-bar" name="search-bar" placeholder="e.g. Great Barrier Reef" />
                 </div>
                 <div class="control">
                     <button class="button is-info"><strong>Search</strong></button>
@@ -65,26 +58,37 @@
             </div>
         </form>
     </div>
+
     <div class="level">
         <div class="level-left">
             <div class="level-item">
                 <div class="container is-fluid">
                     <form class="box has-background-black">
                         <div class="field is-grouped">
-                            <label class="label is-size-4">Youtube Recommendations!</label>
+                            <label class="label is-size-4">YouTube Recommendations!</label>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="level-item">
-            <form class="box has-background-black">
-                <div class="field is-grouped">
-                    <label class="label is-size-4">Information by Wikipedia!</label>
-                </div>
-            </form>
+        <div class="level-right">
+            <div class="level-item">
+                <form class="box has-background-black">
+                    <div class="field is-grouped">
+                        <label class="label is-size-4">Information by Wikipedia!</label>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
+    <div id="dialog" title="Blank search!!">
+        <p>Please input something!</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script> 
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
