@@ -1,26 +1,27 @@
-h1 {
+/*h1 {
     text-align: center;
     font-size: 70px;
     background-color: rgba(149, 104, 255, 0.445);
     margin-top: 0%;
-}
+}*/
 
-.box-1 {
+/*.box-1 {
     text-align: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
     display: inline-block;
-    width: 300px;
-    height: 300px;
+    width: 30%;
+    height: 10%;
 }
 
-#top-img {
-    width: 300px;
+/*#top-img {
+    width: 500px;
     height: 300px;
     text-align: center;
-    background-color: aqua;
+    background-color: rgb(54, 141, 141);
     border-radius: 5%;
     align-content: center;
     display: inline-block;
-}
+}*/
 
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
