@@ -72,8 +72,13 @@ function valueCheck() {
 }
 
 function wikiResults(articles) {
+
+    wiki.innerHTML = ''
+
   const resultsBody = document.createElement("div");
   wiki.append(resultsBody);
+
+ 
 
   const titleEl = document.createElement("h3");
   titleEl.textContent = articles[0].title;
@@ -89,10 +94,12 @@ function wikiResults(articles) {
 
 
   resultsBody.append(titleEl, bodyContentEl, imgEl);
-  console.log(articles[0].image)
 }
 
 function youtubeResults(videos) {
+
+    youtube.innerHTML = ''
+
   for (let i = 0; i < videos.length; i++) {
     const resultBody = document.createElement("div");
     youtube.append(resultBody);
