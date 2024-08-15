@@ -82,9 +82,11 @@ function wikiResults(articles) {
   bodyContentEl.textContent = articles[0].extract;
 
   const imgEl = document.createElement("img");
-  imgEl.setAttribute = ("src", articles[0].image);
+  imgEl.setAttribute("src", articles[0].image);
+
 
   resultsBody.append(titleEl, bodyContentEl, imgEl);
+  console.log(articles[0].image)
 }
 
 function youtubeResults(videos) {
@@ -99,8 +101,8 @@ function youtubeResults(videos) {
     descriptionEl.textContent = videos[i].snippet.description;
 
     const thumbnailEl = document.createElement("a");
-    thumbnailEl.textContent = videos[i].snippet.thumbnails.default;
-    thumbnailEl.setAttribute("href", videos[i].snippet.thumbnails.default);
+    thumbnailEl.textContent = videos[i].snippet.thumbnails.high.url;
+    thumbnailEl.setAttribute("href", videos[i].snippet.thumbnails.high.url);
 
     resultBody.append(titleEl, descriptionEl, thumbnailEl);
   }
