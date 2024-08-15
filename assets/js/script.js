@@ -1,12 +1,18 @@
 const searchBox = document.querySelector("#search-bar");
-const wiki = document.querySelector('#wiki')
-const youtube = document.querySelector('#youtube')
+const wiki = document.querySelector("#wiki-results");
+const youtube = document.querySelector("#youtube-results");
 
 function fetchYouTubeVideos(query) {
   const apiKey = "AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4";
   const baseUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet";
-  const url = baseUrl + "&q=" + encodeURIComponent(query) + "&key=" +  apiKey + "&type=video";
-        
+  const url =
+    baseUrl +
+    "&q=" +
+    encodeURIComponent(query) +
+    "&key=" +
+    apiKey +
+    "&type=video";
+
   return fetch(url)
     .then(function (response) {
       if (!response.ok) {
@@ -23,8 +29,9 @@ function fetchYouTubeVideos(query) {
 }
 
 function fetchWikipediaArticles(query) {
-  const baseUrl = 'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&exintro&explaintext&piprop=original&redirects=1&utf8=1&formatversion=2';
-  const url = baseUrl + '&titles=' + encodeURIComponent(query);
+  const baseUrl =
+    "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|pageimages&exintro&explaintext&piprop=original&redirects=1&utf8=1&formatversion=2";
+  const url = baseUrl + "&titles=" + encodeURIComponent(query);
 
   return fetch(url)
     .then(function (response) {
@@ -39,8 +46,8 @@ function fetchWikipediaArticles(query) {
           return {
             title: page.title,
             index: page.index || null,
-            extract: page.extract || '',
-            image: page.original ? page.original.source : null
+            extract: page.extract || "",
+            image: page.original ? page.original.source : null,
           };
         });
       } else {
@@ -64,52 +71,60 @@ function valueCheck() {
   return true;
 }
 
-function wikiResults(articles){
-    const resultsBody = document.createElement('div');
-    wiki.append(resultsBody)
+function wikiResults(articles) {
+  wiki.innerHTML = "";
 
-    const titleEl = document.createElement('h3')
-    titleEl.textContent = articles[0].title
+  const resultsBody = document.createElement("div");
+  wiki.append(resultsBody);
 
-    const bodyContentEl = document.createElement('p');
-    bodyContentEl.textContent = articles[0].extract
+  const titleEl = document.createElement("h3");
+  titleEl.textContent = articles[0].title;
 
-    const imgEl = document.createElement('img')
-    imgEl.setAttribute = ('src' , articles[0].image)
+  const bodyContentEl = document.createElement("p");
+  bodyContentEl.textContent = articles[0].extract;
 
-    resultsBody.append(titleEl,bodyContentEl,imgEl)
+  const imgEl = document.createElement("img");
+  imgEl.setAttribute("src", articles[0].image);
+  imgEl.style.width = "400px";
+  imgEl.style.height = "400px";
+  imgEl.style.objectFit = "cover";
+
+  resultsBody.append(titleEl, bodyContentEl, imgEl);
 }
 
+function youtubeResults(videos) {
+  youtube.innerHTML = "";
 
-function youtubeResults (videos){
-    const resultBody = document.createElement('div');
-    youtube.append(resultBody)
+  for (let i = 0; i < videos.length; i++) {
+    const resultBody = document.createElement("div");
+    youtube.append(resultBody);
 
-    const titleEl = document.createElement('h3')
-    titleEl.textContent = videos[0].snippet.title
+    const titleEl = document.createElement("h3");
+    titleEl.textContent = videos[i].snippet.title;
 
-    const descriptionEl = document.createElement('p')
-    descriptionEl.textContent = videos[0].snippet.description    
+    const descriptionEl = document.createElement("p");
+    descriptionEl.textContent = videos[i].snippet.description;
 
-    const thumbnailEl = document.createElement('a')
-    thumbnailEl.textContent = videos[0].snippet.thumbnails.default
-    thumbnailEl.setAttribute('href',videos[0].snippet.thumbnails.default)
+    const thumbnailEl = document.createElement("a");
+    thumbnailEl.textContent = videos[i].snippet.thumbnails.high.url;
+    thumbnailEl.setAttribute("href", videos[i].snippet.thumbnails.high.url);
 
-    resultBody.append(titleEl,descriptionEl,thumbnailEl)
+    resultBody.append(titleEl, descriptionEl, thumbnailEl);
+  }
 }
 
 document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault();
+  event.preventDefault();   
   if (!valueCheck()) {
     return;
   }
   const query = searchBox.value.trim();
   fetchYouTubeVideos(query).then(function (videos) {
     console.log(videos);
-    youtubeResults(videos)
+    youtubeResults(videos);
   });
   fetchWikipediaArticles(query).then(function (articles) {
     console.log(articles);
-    wikiResults(articles)
+    wikiResults(articles);
   });
 });
