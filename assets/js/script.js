@@ -1,6 +1,6 @@
 const searchBox = document.querySelector("#search-bar");
-const wiki = document.querySelector("#wiki");
-const youtube = document.querySelector("#youtube");
+const wiki = document.querySelector("#wiki-results");
+const youtube = document.querySelector("#youtube-results");
 
 function fetchYouTubeVideos(query) {
   const apiKey = "AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4";
@@ -72,13 +72,10 @@ function valueCheck() {
 }
 
 function wikiResults(articles) {
-
-    wiki.innerHTML = ''
+  wiki.innerHTML = "";
 
   const resultsBody = document.createElement("div");
   wiki.append(resultsBody);
-
- 
 
   const titleEl = document.createElement("h3");
   titleEl.textContent = articles[0].title;
@@ -88,17 +85,15 @@ function wikiResults(articles) {
 
   const imgEl = document.createElement("img");
   imgEl.setAttribute("src", articles[0].image);
-  imgEl.style.width='400px'
-  imgEl.style.height='400px'
-  imgEl.style.objectFit='cover'
-
+  imgEl.style.width = "400px";
+  imgEl.style.height = "400px";
+  imgEl.style.objectFit = "cover";
 
   resultsBody.append(titleEl, bodyContentEl, imgEl);
 }
 
 function youtubeResults(videos) {
-
-    youtube.innerHTML = ''
+  youtube.innerHTML = "";
 
   for (let i = 0; i < videos.length; i++) {
     const resultBody = document.createElement("div");
@@ -119,7 +114,7 @@ function youtubeResults(videos) {
 }
 
 document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault();
+  event.preventDefault();   
   if (!valueCheck()) {
     return;
   }
