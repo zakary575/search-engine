@@ -1,5 +1,6 @@
 const searchBox = document.querySelector("#search-bar");
 const wiki = document.querySelector('#wiki')
+const youtube = document.querySelector('#youtube')
 
 function fetchYouTubeVideos(query) {
   const apiKey = "AIzaSyAZQxBxJRTVW5bNFyFSHAj-xF8GBWF3NQ4";
@@ -80,6 +81,23 @@ function wikiResults(articles){
 }
 
 
+function youtubeResults (videos){
+    const resultBody = document.createElement('div');
+    youtube.append(resultBody)
+
+    const titleEl = document.createElement('h3')
+    titleEl.textContent = videos[0].snippet.title
+
+    const descriptionEl = document.createElement('p')
+    descriptionEl.textContent = videos[0].snippet.description    
+
+    const thumbnailEl = document.createElement('a')
+    thumbnailEl.textContent = videos[0].snippet.thumbnails.default
+    thumbnailEl.setAttribute('href',videos[0].snippet.thumbnails.default)
+
+    resultBody.append(titleEl,descriptionEl,thumbnailEl)
+}
+
 document.querySelector("form").addEventListener("submit", function (event) {
   event.preventDefault();
   if (!valueCheck()) {
@@ -88,6 +106,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
   const query = searchBox.value.trim();
   fetchYouTubeVideos(query).then(function (videos) {
     console.log(videos);
+    youtubeResults(videos)
   });
   fetchWikipediaArticles(query).then(function (articles) {
     console.log(articles);
