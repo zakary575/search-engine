@@ -12,22 +12,21 @@
 </head>
 
 <body>
-    <h1 class="title is-1 has-text-centered-desktop has-background-info">Welcome To WikiTube!</h1>
+    <h1 class="title is-size-1-desktop has-text-centered has-background-info">Welcome To WikiTube!</h1>
 
     <div class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <div class="image">
-                    <img src="https://i.insider.com/5fbd515550e71a001155724f?width=700"
-                        style='width:75%; margin-left: 12%;' alt="Null" />
-                </div>
+        <div class="level-item">
+            <div class="image" id="top-img">
+                <img src="https://i.insider.com/5fbd515550e71a001155724f?width=700" class="responsive" />
             </div>
         </div>
         <div class="level-center">
             <div class="level-item">
-                <div class="container">
+                <div class="container" id="box-1">
                     <div class="content">
-                        <p class="box is-size-5-desktop has-text-white has-text-centered has-background-info-dark">Hello there and welcome to the
+                        <p class="box is-size-5 has-text-white has-text-centered has-background-info-dark">Hello
+                            there
+                            and welcome to the
                             amazing website called WikiTube! Have you been wanting to learn about whales or the life of
                             Vincent van Gogh? Well, you're in luck! With this expertly designed webpage, you can learn
                             all about whales, Vincent van Gogh and so much more! Just search for a topic of your
@@ -39,20 +38,18 @@
                 </div>
             </div>
         </div>
-        <div class="level-right">
-            <div class="level-item">
-                <div class="image">
-                    <img src="https://media.sproutsocial.com/uploads/2020/10/10-YouTube-hashtags_Artboard-1-copy.svg"
-                        style='width: 75%; margin-left: 12%;' alt="Null" />
-                </div>
+        <div class="level-item">
+            <div class="image" id="top-img">
+                <img src="https://media.sproutsocial.com/uploads/2020/10/10-YouTube-hashtags_Artboard-1-copy.svg"
+                    class="responsive" />
             </div>
         </div>
     </div>
 
     <div class="container">
-        <form class="box has-background-grey" style="margin-bottom: 5%; margin-top: 5%;">
+        <div class="box has-background-grey" style="margin-bottom: 5%; margin-top: 5%;">
             <div class="field is-grouped">
-                <label class="label is-size-4-desktop">Search for a topic!</label>
+                <label class="label is-size-4-desktop has-text-white">Search for a topic!</label>
                 <div class="control is-expanded">
                     <input class="input" type="text" id="search-bar" name="search-bar"
                         placeholder="e.g. Great Barrier Reef" />
@@ -61,30 +58,24 @@
                     <button class="button is-info"><strong>Search</strong></button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
     <div class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <div class="container is-fluid">
-                    <form class="box has-background-info-dark">
-                        <div class="field is-grouped">
-                            <label class="label is-size-4">YouTube Recommendations!</label>
-                        </div>
-                    </form>
+        <div class="level-item">
+            <div class="box has-background-info-dark" id="results">
+                <div class="field is-grouped">
+                    <label class="label is-size-4 has-text-white is-underlined">YouTube Recommendations!</label>
                 </div>
             </div>
         </div>
-        <!--<div class="level-right"> leaving this here in case we want to change spacing -->
         <div class="level-item">
-            <form class="box has-background-info-dark" style="margin-right: 10%;">
+            <div class="box has-background-info-dark" id="results">
                 <div class="field is-grouped">
-                    <label class="label is-size-4">Information by Wikipedia!</label>
+                    <label class="label is-size-4 has-text-white is-underlined">Information by Wikipedia!</label>
                 </div>
-            </form>
+            </div>
         </div>
-        <!--</div>-->
     </div>
 
     <div id="dialog" title="Blank search!!">
