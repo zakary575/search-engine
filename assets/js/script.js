@@ -83,6 +83,9 @@ function wikiResults(articles) {
 
   const imgEl = document.createElement("img");
   imgEl.setAttribute("src", articles[0].image);
+  imgEl.style.width='400px'
+  imgEl.style.height='400px'
+  imgEl.style.objectFit='cover'
 
 
   resultsBody.append(titleEl, bodyContentEl, imgEl);
