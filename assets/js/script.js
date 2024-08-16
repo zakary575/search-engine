@@ -105,11 +105,12 @@ function youtubeResults(videos) {
     const descriptionEl = document.createElement("p");
     descriptionEl.textContent = videos[i].snippet.description;
 
-    const thumbnailEl = document.createElement("a");
-    thumbnailEl.textContent = videos[i].snippet.thumbnails.high.url;
-    thumbnailEl.setAttribute("href", videos[i].snippet.thumbnails.high.url);
+    const videoEl = document.createElement("iframe");
+    videoEl.setAttribute("src", `https://www.youtube.com/embed/${videos[i].id.videoId}?autoplay=1&mute=1`);
+    videoEl.setAttribute('width',420)
+    videoEl.setAttribute('height',315)
 
-    resultBody.append(titleEl, descriptionEl, thumbnailEl);
+    resultBody.append(titleEl, descriptionEl, videoEl);
   }
 }
 
@@ -122,19 +123,19 @@ document.querySelector("form").addEventListener("submit", function (event) {
   fetchYouTubeVideos(query).then(function (videos) {
     console.log(videos);
     youtubeResults(videos);
-    localStorage.setItem(youtube, JSON.stringify(videos));
+    localStorage.setItem('youtube', JSON.stringify(videos));
   });
   fetchWikipediaArticles(query).then(function (articles) {
     console.log(articles);
     wikiResults(articles);
-    localStorage.setItem(wiki, JSON.stringify(articles));
+    localStorage.setItem('wiki', JSON.stringify(articles));
   });
 });
 
 
 function init(){
-  const videos = JSON.parse(localStorage.getItem(youtube))
-  const articles = JSON.parse(localStorage.getItem(wiki))
+  const videos = JSON.parse(localStorage.getItem('youtube'))
+  const articles = JSON.parse(localStorage.getItem('wiki'))
   youtubeResults(videos)
   wikiResults(articles)
 }
