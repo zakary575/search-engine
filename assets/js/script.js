@@ -114,7 +114,7 @@ function youtubeResults(videos) {
 }
 
 document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault();   
+  event.preventDefault();
   if (!valueCheck()) {
     return;
   }
@@ -122,9 +122,21 @@ document.querySelector("form").addEventListener("submit", function (event) {
   fetchYouTubeVideos(query).then(function (videos) {
     console.log(videos);
     youtubeResults(videos);
+    localStorage.setItem(youtube, JSON.stringify(videos));
   });
   fetchWikipediaArticles(query).then(function (articles) {
     console.log(articles);
     wikiResults(articles);
+    localStorage.setItem(wiki, JSON.stringify(articles));
   });
 });
+
+
+function init(){
+  const videos = JSON.parse(localStorage.getItem(youtube))
+  const articles = JSON.parse(localStorage.getItem(wiki))
+  youtubeResults(videos)
+  wikiResults(articles)
+}
+
+init()
